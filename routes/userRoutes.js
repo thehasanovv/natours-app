@@ -1,29 +1,20 @@
 const express = require('express');
-
 const userController = require('./../controllers/userController');
+const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
-// prettier-ignore
+router.post('/signup', authController.signup);
+
 router
-  .route('/api/v1/users')
+  .route('/')
   .get(userController.getAllUsers)
-  .patch(userController.createUsers);
-// prettier-ignore
+  .post(userController.createUsers);
+
 router
-  .route('/api/v1/users/:id')
+  .route('/:id')
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
 
 module.exports = router;
-
-// app.route('/api/v1/users')
-//   .get(getAllUsers)
-//   .patch(createUsers);
-
-// app
-//   .route('/api/v1/users/:id')
-//   .get(getUser)
-//   .patch(updateUser)
-//   .delete(deleteUser);
