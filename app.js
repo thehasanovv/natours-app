@@ -31,15 +31,11 @@ app.use('/api/v1/users', userRouter);
 //////////////////////////////////
 // 3) All wrong path call global globalErrorHandler
 app.all('*', (req, res, next) => {
-  console.log(
-    `log err msg`,
-    new AppError(`Can't find ${req.originalUrl} on this server!`, 404)
-  );
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 //////////////////////////////////
-// 4) Catch all errors send err response _MIDDLEWARE
+// 4) Catch all errors send err response
 app.use(globalErrorHandler);
 
 module.exports = app;
